@@ -1,6 +1,6 @@
 ## fMRI MVPA scripts
 
-- Here I share my scripts for fMRI MVPA performed in my doctoral thesis (Tseng, 2025): Sensorimotor representations for native and non-native phoneme perception (Chpater 2 in hal.science/tel-04988192).
+- Here I share my scripts for fMRI MVPA performed in my doctoral thesis: <a href="https://hal.science/tel-04988192">Sensorimotor representations for native and non-native phoneme perception</a> (Chpater 2 in Tseng, 2025).
 - These scripts are based on <a href="https://nilearn.github.io/stable/index.html">Nilearn</a>/<a href="https://scikit-learn.org/stable/">scikit-learn</a> for cross-modal decoding and <a href="https://rsatoolbox.readthedocs.io/en/stable/">rsatoolbox</a> for representational similarity analysis in Python.
 - Nilearn weekly <a href="https://nilearn.github.io/stable/development.html#how-to-get-help">drop-in hours</a> helped me a lot during my PhD study to discuss my questions directly with developers.
 
