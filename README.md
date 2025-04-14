@@ -12,7 +12,7 @@ This script performs **cross-modal decoding** (classification) of fMRI data, spe
 
 - Modality 1 (e.g., movement): Used to train a classifier
 - Modality 2 (e.g., perception): Used for testing using the same classifier trained for modality 1
-- Region of Interest: Individual 10mm spheres (in the precentral gyrus as in indivROI_10sphere.py)
+- Region of Interest: Individual 10mm spheres in the precentral gyrus (see indivROI_10sphere.py)
 - Preprocessing: To minimize univariate differences between the two modalities and the two scan sequences, each t-map is demeaned and standardized for each modality and group (Rezk et al. Curr. Biol. 2020).
 - Classification: LinearSVC with `LeaveOneGroupOut` cross-validation
 - Output: Decoding accuracy within and across modalities
