@@ -2,11 +2,11 @@
 Cross-modal decoding
 Train one modality (e.g., movement) of fMRI data and test on another modality (e.g. perception) 
 within an ROI (e.g. individual 10mm sphere in the precentral gyrus).
-To minimize the univariate differences between the two modalities and the two scan sequences (in Tseng T., 2025), 
-each t-map in each modality of each participant was demeanalized (demeaning and z scored standardization; Rezk et al., 2020).
+To minimize the univariate differences between the two modalities and the two scan sequences (Ch.2 in Tseng T., 2025), 
+each t-map in each modality of each participant was demeanalized (demeaning and z-scored standardization; Rezk et al., 2020).
 The classification was conducted with a LeaveOneGroupOut cross-validation scheme.
 
-March 28 2025 first uploaded 
+April 14 2025 first uploaded 
 by Tzuyi TSENG
 tzuyitseng.neuroling@gmail.com
 """
