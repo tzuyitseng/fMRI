@@ -1,8 +1,8 @@
 """ 
 searchlight representational similarity analysis (RSA)
 
-A 10 mm spherical radius moved across each voxel in the combined ROI, with the voxel serving as the center of the searchlight sphere.
-At each searchlight center, a neural RDM was generated and correlated to a (self-defined) theoretical RDM using an open-source Python toolbox (rsatoolbox.readthedocs.io). 
+A 10 mm spherical radius moved across each voxel in a combined ROI, with the voxel serving as the center of the searchlight sphere.
+At each searchlight center, a neural RDM was generated and correlated to a predefined theoretical RDM. 
 Each neural RDM was calculated from the pairwise correlation between neural patterns of each condition (the original script included n = 16) using cosine distance, resulting in a 16 x 16 pairwise matrix. 
 The correlation between each of the theoretical RDMs (predicted similarity) and the neural RDMs (observed similarity) was calculated using Spearman's rho (ρ).
 
