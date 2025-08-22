@@ -17,10 +17,12 @@ import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 from nilearn.maskers import NiftiMasker
-from nilearn import image
-from scipy.stats import pearsonr
+from rsatoolbox.inference import eval_fixed
+from rsatoolbox.model import ModelFixed
+from rsatoolbox.rdm import RDMs
+from rsatoolbox.util.searchlight import get_volume_searchlight, get_searchlight_RDMs, evaluate_models_searchlight
+from scipy.stats import spearmanr
 import warnings
-
 warnings.filterwarnings('ignore')
 
 # Paths (change '...' as your paths)
