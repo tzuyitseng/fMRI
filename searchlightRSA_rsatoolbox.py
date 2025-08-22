@@ -36,6 +36,7 @@ sub_list = ['sub1', 'sub2']
 conditions = ['condition1', 'condition2', ..., 'condition16']
 models = ['theoreticalRDM1','theoreticalRDM2']
 
+"""searchlight RSA for each individual for each theoretical RDM"""
 all_eval_scores = {}
 
 for ml in models:
@@ -99,3 +100,47 @@ for ml, scores in all_eval_scores.items():
     df = pd.DataFrame(scores, index=sub_list)
     csv_path = os.path.join(save_dir, 'searchlightRSA', 'eval_scores', f'{ml}_eval_scores.csv')
     df.to_csv(csv_path)
+
+
+
+"""group-level analysis using permutation test using Nilearn"""
+import matplotlib.pyplot as plt
+from nilearn import image, maskers, plotting, datasets, masking
+from nilearn.image import threshold_img, math_img, load_img, resample_to_img, coord_transform, mean_img, get_data, index_img
+from nilearn.plotting import view_img, plot_stat_map, plot_glass_brain, plot_img, plot_design_matrix
+from nilearn.glm.thresholding import threshold_stats_img
+from nilearn.reporting import get_clusters_table
+from nilearn.glm.second_level import SecondLevelModel, non_parametric_inference
+
+for ml in models:
+    print(ml)
+    # load individual searchlight RSA images
+    imgs = []
+    for i, subject in enumerate(sub_list):
+        img_sub = os.path.join(save_dir, 'searchlightRSA', f'{subject}_seachlightRSA_{ml}.nii.gz')
+        imgs.append(img_sub)
+
+    # second-level design matrix
+    second_level_input = imgs
+    design_matrix = pd.DataFrame(
+        [1] * len(second_level_input),
+        columns=["intercept"],
+    )
+    
+    ## permutation test
+    out_dict_voxel = non_parametric_inference(
+        second_level_input,
+        design_matrix=design_matrix,
+        model_intercept=True,
+        mask=mask_img,
+        n_perm=10000,
+        two_sided_test=True,
+        n_jobs=-1,
+        threshold=0.05
+    )
+    
+    # this gives an oupt image with negative log10 family-wise error rate-corrected p-values corrected threshold (voxel-level error control)
+    #for other threshold see: https://nilearn.github.io/dev/modules/generated/nilearn.glm.second_level.non_parametric_inference.html
+    result_img = out_dict_voxel['logp_max_t']
+    result_path = os.path.join(data_path, f'perm_seachlightRSA_FWE_{ml}.nii.gz')
+    nib.save(result_img, result_path)
